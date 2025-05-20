@@ -10,14 +10,6 @@ class PostForm(forms.ModelForm):
         }
         widgets = {
             'message': forms.Textarea(attrs={'rows': 2,'class':'form-control'}),
-            'latitude': forms.HiddenInput(),
-            'longitude': forms.HiddenInput(),
+            'latitude': forms.HiddenInput(attrs={'id': 'id_latitude'}),
+            'longitude': forms.HiddenInput(attrs={'id': 'id_longitude'}),
         }
-
-    def clean(self):
-        cleaned_data = super().clean()
-        lat = cleaned_data.get("latitude")
-        lon = cleaned_data.get("longitude")
-
-        if lat is None or lon is None:
-            raise forms.ValidationError("Lokasi tidak terdeteksi. Aktifkan lokasi di browser.")
