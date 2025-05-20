@@ -5,8 +5,11 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['message', 'latitude', 'longitude']
+        labels = {
+            'message': 'Whats Happening?',
+        }
         widgets = {
-            'message': forms.Textarea(attrs={'rows': 2, 'cols':190}),
+            'message': forms.Textarea(attrs={'rows': 2,'class':'form-control'}),
             'latitude': forms.HiddenInput(),
             'longitude': forms.HiddenInput(),
         }
