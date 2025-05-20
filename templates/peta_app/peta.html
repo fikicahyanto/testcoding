@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Peta Lokasi</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"/>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    #map { height: 500px; }
+  </style>
+</head>
+<body>
+  <h2>Peta Lokasi</h2>
+  <div id="map"></div>
+</body>
+</html>
+
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+ <script>
+ document.addEventListener("DOMContentLoaded", function () {
+    var lat = "{{ post.latitude }}";
+    var lon = "{{ post.longitude }}";
+
+    var map = L.map('map').setView([lat, lon], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    L.marker([lat, lon]).addTo(map)
+      .bindPopup("{{ post.message }}")
+      .openPopup();
+  });
+</script>
