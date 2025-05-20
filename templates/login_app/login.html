@@ -51,10 +51,15 @@
   <div class="login-box">
     <h3 class="mb-4 fw-bold">Log in</h3>
     {% if error %}<div class="alert alert-danger">{{ error }}</div>{% endif %}
-    <form method="POST">
+    <form method="POST" novalidate>
       {% csrf_token %}
-      <input type="text" name="username" class="form-control mb-3" placeholder="username" required>
-      <input type="password" name="password" class="form-control mb-3" placeholder="Password" required>
+      <div class="mb-3">
+      {{ form.username }}
+    </div>
+
+    <div class="mb-3">
+      {{ form.password }}
+    </div>
       <button type="submit" class="btn login-btn w-100 mb-3">Log in</button>
     </form>
 
